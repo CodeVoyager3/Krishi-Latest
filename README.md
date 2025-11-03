@@ -1,73 +1,117 @@
-# Welcome to your Lovable project
+# 🌾 Krishi Rakshak
 
-## Project info
+**Krishi Rakshak** is a modern, multilingual web application designed to help farmers by providing AI-powered crop disease detection and a community platform. Users can upload images of their crops, receive instant diagnoses, and connect with other farmers and experts.
 
-**URL**: https://lovable.dev/projects/c071ad67-db54-4934-bd67-8edbb0320ef6
+The platform is built with a modern tech stack including **React (Vite)**, **TypeScript**, and **Tailwind CSS** on the frontend, with **Supabase** serving as the backend for database, authentication, and serverless functions.
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+* **AI Disease Detection**: Core feature allowing users to upload an image of a crop leaf and get an AI-powered diagnosis. (Leverages `supabase/functions/detect-disease`)
+* **Internationalization (i18n)**: Full multilingual support for English, Hindi, Marathi, Spanish, French, and Chinese. (Managed via `i18n/`)
+* **User Authentication**: Secure login and registration for farmers and experts.
+* **Community Forum**: A dedicated page for users to post questions, share insights, and interact. (`src/pages/Community.tsx`)
+* **User Dashboard**: A personal dashboard for users to track their uploads and activity. (`src/pages/Dashboard.tsx`)
+* **Static Pages**: Informative "About Us" and "How It Works" pages.
+* **Responsive Design**: Fully responsive layout built with Tailwind CSS and Shadcn UI components.
 
-**Use Lovable**
+## 💻 Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c071ad67-db54-4934-bd67-8edbb0320ef6) and start prompting.
+* **Frontend**: React (Vite), TypeScript, Tailwind CSS
+* **UI Components**: Shadcn UI
+* **Backend-as-a-Service (BaaS)**: Supabase
+    * **Database**: Supabase Postgres
+    * **Auth**: Supabase Auth
+    * **Serverless Functions**: Supabase Edge Functions (for disease detection)
+* **Language & Translation**: `i18next`
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Getting Started
 
-**Use your preferred IDE**
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+You will need the following tools installed on your system:
 
-Follow these steps:
+* [Node.js](https://nodejs.org/) (v18 or later)
+* [npm](https://www.npmjs.com/) or `bun`
+* [Supabase CLI](https://supabase.com/docs/guides/cli) (for backend development)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation & Setup
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1.  **Clone the repository:**
+    ```sh
+    git clone [https://github.com/your-username/krishi-rakshak.git](https://github.com/your-username/krishi-rakshak.git)
+    cd krishi-rakshak
+    ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2.  **Install frontend dependencies:**
+    ```sh
+    # Using npm
+    npm install
+    
+    # Or using bun
+    bun install
+    ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+3.  **Set up Supabase:**
+    * Link your local project to your Supabase project:
+        ```sh
+        supabase link --project-ref <YOUR-PROJECT-REF>
+        ```
+    * Push the database migrations:
+        ```sh
+        supabase db push
+        ```
+    * Deploy the Edge Functions:
+        ```sh
+        supabase functions deploy
+        ```
 
-**Edit a file directly in GitHub**
+4.  **Set up Environment Variables:**
+    * Create a `.env` file in the root of the project.
+    * Add your Supabase URL and Anon Key:
+        ```env
+        VITE_SUPABASE_URL=your-supabase-url
+        VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+        ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+5.  **Run the development server:**
+    ```sh
+    # Using npm
+    npm run dev
+    
+    # Or using bun
+    bun run dev
+    ```
 
-**Use GitHub Codespaces**
+The application should now be running on `http://localhost:5173`.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📜 Available Scripts
 
-## What technologies are used for this project?
+Inside the `package.json`, you will find the following scripts:
 
-This project is built with:
+* `bun run dev`: Starts the Vite development server.
+* `bun run build`: Builds the application for production.
+* `bun run lint`: Lints the project files using ESLint.
+* `bun run preview`: Serves the production build locally.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📁 Project Structure
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/c071ad67-db54-4934-bd67-8edbb0320ef6) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```text
+krishi-rakshak/
+├── public/                 # Static assets
+├── src/
+│   ├── assets/             # Images and icons
+│   ├── components/         # Reusable React components (UI, ImageUpload, Navbar)
+│   ├── hooks/              # Custom React hooks
+│   ├── i18n/               # Internationalization and translation JSON files
+│   ├── integrations/       # Supabase client setup
+│   ├── lib/                # Utility functions
+│   ├── pages/              # Main page components (Index, About, Dashboard, etc.)
+│   ├── App.tsx             # Main app component with routing
+│   └── main.tsx            # React entry point
+├── supabase/
+│   ├── functions/
+│   │   └── detect-disease/ # Serverless function for AI detection
+│   └── migrations/         # Database schema migrations
+└── package.json            # Project dependencies and scripts
